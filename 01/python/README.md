@@ -1,0 +1,1 @@
+The goal for this problem was to create the unholiest pythonic one-liners.
