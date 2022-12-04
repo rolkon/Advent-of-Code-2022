@@ -23,25 +23,25 @@ def get_common_priority(string_list):
 	return occurence_map.nonzero()[0][0]
 
 
-with open('../input.txt') as file:
+file = open('../input.txt')
+rucksacks = file.read().split('\n')
+file.close()
 
-	rucksacks = file.read().split('\n')
+# part 1
+sum_priorities = 0
 
-	# part 1
-	sum_priorities = 0
+for rucksack in rucksacks:
+	left_side = rucksack[:len(rucksack)//2]
+	right_side = rucksack[len(rucksack)//2:]
 
-	for rucksack in rucksacks:
-		left_side = rucksack[:len(rucksack)//2]
-		right_side = rucksack[len(rucksack)//2:]
+	sum_priorities += get_common_priority([left_side, right_side])
 
-		sum_priorities += get_common_priority([left_side, right_side])
+print("Part 1 result: ", sum_priorities)
 
-	print("Part 1 result: ", sum_priorities)
+# part 2
+sum_priorities = 0
 
-	# part 2
-	sum_priorities = 0
+for i in range(0, len(rucksacks), 3):
+	sum_priorities += get_common_priority(rucksacks[i:i+3])
 
-	for i in range(0, len(rucksacks), 3):
-		sum_priorities += get_common_priority(rucksacks[i:i+3])
-
-	print("Part 2 result: ", sum_priorities)
+print("Part 2 result: ", sum_priorities)

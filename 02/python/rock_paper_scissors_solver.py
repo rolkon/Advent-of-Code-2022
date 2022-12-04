@@ -36,13 +36,14 @@ lookup = {'A':0, 'X':0, 'B':1, 'Y':1, 'C':2, 'Z':2}
 total_points_part1 = 0
 total_points_part2 = 0
 
-with open('../input.txt') as file:
-	strategy_list = file.read().split('\n')
+file = open('../input.txt')
+strategy_list = file.read().split('\n')
+file.close()
 
-	for strategy in strategy_list:
-		hands = strategy.split(' ')
-		total_points_part1 += part1_matrix[lookup[hands[0]], lookup[hands[1]]]
-		total_points_part2 += part2_matrix[lookup[hands[0]], lookup[hands[1]]]
+for strategy in strategy_list:
+	hands = strategy.split(' ')
+	total_points_part1 += part1_matrix[lookup[hands[0]], lookup[hands[1]]]
+	total_points_part2 += part2_matrix[lookup[hands[0]], lookup[hands[1]]]
 
-	print("Part 1 result: ", total_points_part1)
-	print("Part 2 result: ", total_points_part2)
+print("Part 1 result: ", total_points_part1)
+print("Part 2 result: ", total_points_part2)
