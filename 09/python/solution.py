@@ -38,19 +38,9 @@ def move_tail(rope):
 	rel_pos = rope[0] - rope[1]
 	step_matrix_pos = rel_pos + [2, 2] #add offset
 
-	#print(rel_pos, step_matrix_pos)
-
 	rope[1] += step_matrix[step_matrix_pos[0], step_matrix_pos[1]]
 
 	return rope
-
-def move_rope(rope_pos, direction):
-	new_pos_h = move_head(rope_pos[0], direction)
-	new_pos_t = move_tail(rope_pos[0], rope_pos[1])
-
-	new_rope_pos = [new_pos_h, new_pos_t]
-
-	return new_rope_pos
 
 def move_chain(rope_chain, direction):
 	for i in range(len(rope_chain)):
@@ -62,7 +52,6 @@ def move_chain(rope_chain, direction):
 			rope_chain[i, 0] = rope_chain[i-1,1]
 			rope_chain[i] = move_tail(rope_chain[i])
 
-	print(rope_chain.tolist())
 	return rope_chain
 
 file = open('../input.txt')
@@ -80,8 +69,6 @@ new_positions_2 = set()
 for rope_step in rope_steps:
 	direction, nr_steps = rope_step.split(' ')
 	nr_steps = int(nr_steps)
-
-	print(direction, nr_steps)
 
 	for step in range(nr_steps):
 		rope_chain = move_chain(rope_chain, direction)
